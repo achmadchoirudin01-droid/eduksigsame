@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎣 Mancing Jaringan — Bisnis TKJ & Teknologi Nirkabel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+ --sky1:#8ed8ff;--sky2:#dcf4ff;--sea1:#1187b3;--sea2:#04304a;
+ --panel:#062b3d;--panel2:#0a3a52;--line:#155a7a;--line2:#2b84ad;
+ --txt:#eaf7ff;--dim:#9cc8dd;--coral:#ff7a46;--sun:#ffd93d;--gr:#3ef08f;--rd:#ff5d5d;--am:#ffd93d;
+ --fd:'Bangers',cursive;--fb:'Nunito',sans-serif;--fm:'Share Tech Mono',monospace;
+}
+body{font-family:var(--fb);color:var(--txt);background:#04222f;min-height:100vh;overflow-x:hidden;
+ background-image:radial-gradient(900px 480px at 85% -8%,rgba(62,240,143,.07),transparent 60%),radial-gradient(800px 500px at 8% 110%,rgba(255,122,70,.08),transparent 60%)}
+button{font-family:inherit;cursor:pointer;color:inherit;background:none;border:none}
+input{font-family:var(--fb);font-size:16px;color:var(--txt);background:#083348;border:1px solid var(--line);border-radius:8px;padding:10px 12px;width:100%;outline:none}
+input:focus{border-color:var(--sun);box-shadow:0 0 0 2px rgba(255,217,61,.18)}
+label{font-family:var(--fm);font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;display:block;margin-bottom:5px}
+::-webkit-scrollbar{width:9px}::-webkit-scrollbar-thumb{background:var(--line2);border-radius:9px}::-webkit-scrollbar-track{background:#04222f}
+
+.btn{font-family:var(--fd);letter-spacing:2px;font-size:19px;padding:12px 26px;color:#3d1400;
+ background:linear-gradient(180deg,#ffb27a,var(--coral));border:2px solid #ffd9bd;border-radius:12px;transition:.18s;
+ box-shadow:0 6px 0 #b8431f,0 10px 18px rgba(0,0,0,.35)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 9px 0 #b8431f,0 14px 22px rgba(0,0,0,.4)}
+.btn:active{transform:translateY(2px);box-shadow:0 2px 0 #b8431f}
+.btn.sun{background:linear-gradient(180deg,#ffe98a,var(--sun));border-color:#fff3c0;box-shadow:0 6px 0 #c79a00,0 10px 18px rgba(0,0,0,.35)}
+.btn.sun:hover{box-shadow:0 9px 0 #c79a00,0 14px 22px rgba(0,0,0,.4)}
+.btn.sun:active{box-shadow:0 2px 0 #c79a00}
+.btn.ghost{background:transparent;color:var(--dim);border:2px solid var(--line2);box-shadow:none}
+.btn.ghost:hover{color:#fff;border-color:var(--dim)}
+.btn.big{font-size:23px;padding:15px 34px}
+.icobtn{width:42px;height:42px;border:2px solid var(--line2);border-radius:10px;background:var(--panel);font-size:18px;transition:.15s}
+.icobtn:hover{border-color:var(--sun);box-shadow:0 0 14px rgba(255,217,61,.3)}
+
+.screen{display:none;min-height:100vh;position:relative;z-index:2;padding:18px;animation:scrIn .45s ease}
+.screen.active{display:block}
+@keyframes scrIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.wrap{max-width:920px;margin:0 auto}
+.panel{background:linear-gradient(165deg,var(--panel2),var(--panel));border:2px solid var(--line);border-radius:14px;padding:20px;position:relative}
+.panel-h{font-family:var(--fd);font-size:22px;letter-spacing:2px;color:var(--sun);margin-bottom:12px}
+
+/* ---------- START ---------- */
+.start-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;max-width:1080px;margin:0 auto;padding-top:12px;align-items:start}
+.badge{display:inline-block;font-family:var(--fm);font-size:11px;letter-spacing:3px;color:var(--sun);border:1px solid rgba(255,217,61,.45);padding:6px 14px;border-radius:20px;background:rgba(255,217,61,.08);margin-bottom:14px}
+h1.gt{font-family:var(--fd);line-height:1;font-size:clamp(42px,7vw,84px);color:#fff;letter-spacing:2px;
+ text-shadow:0 0 26px rgba(62,240,143,.4),4px 4px 0 var(--coral),-3px -3px 0 rgba(255,217,61,.35);animation:glow 3s ease-in-out infinite}
+h1.gt span{color:var(--sun)}
+@keyframes glow{0%,100%{text-shadow:0 0 22px rgba(62,240,143,.4),4px 4px 0 var(--coral),-3px -3px 0 rgba(255,217,61,.3)}50%{text-shadow:0 0 42px rgba(62,240,143,.75),4px 4px 0 var(--coral),-3px -3px 0 rgba(255,217,61,.5)}}
+.tag{font-family:var(--fm);color:var(--gr);letter-spacing:2px;margin:12px 0 16px;font-size:13px}
+.rules{font-size:15.5px;line-height:1.95;color:var(--dim);margin-bottom:16px}
+.rules b{color:var(--txt)}
+.rules .r{display:block}
+.catch-row{display:grid;grid-template-columns:52px 1fr auto;gap:10px;align-items:center;border:2px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:9px;background:#083348;transition:.15s}
+.catch-row:hover{transform:translateX(5px);border-color:var(--sun);box-shadow:0 0 18px -6px var(--sun)}
+.catch-row .cf{font-size:30px;text-align:center}
+.catch-row b{font-size:15px}
+.catch-row small{display:block;color:var(--dim);font-size:12.5px}
+.catch-row .cp{font-family:var(--fd);font-size:19px;color:var(--sun);letter-spacing:1px}
+
+/* ---------- HUD ---------- */
+.hud{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 14px;background:rgba(4,34,47,.94);border-bottom:2px solid var(--line);backdrop-filter:blur(4px)}
+.hcell{font-family:var(--fm);font-size:13px;letter-spacing:1px;padding:6px 11px;border:2px solid var(--line);border-radius:9px;background:#083348}
+.hcell b{color:#fff}
+#hudTime{color:var(--sun);border-color:rgba(255,217,61,.5);font-size:15px}
+#hudTime.low{color:var(--rd);border-color:var(--rd);animation:pulseT .6s ease-in-out infinite}
+@keyframes pulseT{50%{transform:scale(1.06)}}
+#hudBad.hot{color:var(--rd);border-color:var(--rd)}
+.hud .sp{flex:1}
+
+/* ---------- SCENE ---------- */
+.scene{position:relative;height:clamp(320px,46vh,440px);border-radius:18px;overflow:hidden;border:2px solid var(--line2);margin-bottom:16px;
+ background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 44%,var(--sea1) 44%,var(--sea2) 100%);transition:filter 1.2s}
+.scene.storm{filter:brightness(.55) saturate(.6)}
+.sun{position:absolute;top:18px;right:30px;font-size:52px;animation:sunPulse 4s ease-in-out infinite;filter:drop-shadow(0 0 26px rgba(255,217,61,.9))}
+@keyframes sunPulse{50%{transform:scale(1.1)}}
+.cloud{position:absolute;font-size:38px;opacity:.95;animation:cloudMove linear infinite}
+@keyframes cloudMove{from{transform:translateX(-90px)}to{transform:translateX(calc(100vw))}}
+.wavestrip{position:absolute;left:0;white-space:nowrap;font-size:30px;line-height:1;letter-spacing:-7px;user-select:none;pointer-events:none;animation:waveSlide linear infinite}
+@keyframes waveSlide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.swim{position:absolute;font-size:26px;pointer-events:none;animation:swimGo linear infinite;opacity:.9}
+.swim.flip span{display:inline-block;transform:scaleX(-1)}
+@keyframes swimGo{from{left:-8%}to{left:104%}}
+.boat-wrap{position:absolute;left:50%;top:calc(44% - 62px);transform:translateX(-50%);text-align:center;z-index:10;animation:bobber 3.2s ease-in-out infinite}
+@keyframes bobber{0%,100%{transform:translateX(-50%) translateY(0) rotate(-1.5deg)}50%{transform:translateX(-50%) translateY(-8px) rotate(1.5deg)}}
+.fisher{font-size:42px;position:relative;z-index:2;margin-bottom:-16px;filter:drop-shadow(0 4px 6px rgba(0,0,0,.3))}
+.hull{font-size:66px;line-height:1;filter:drop-shadow(0 6px 10px rgba(0,0,0,.35))}
+.hull.bigship{font-size:96px}
+.line{position:absolute;left:calc(50% + 26px);top:52px;width:2px;height:0;background:rgba(255,255,255,.75);transition:height .7s ease;z-index:1}
+.line.cast{height:118px}
+.hookfish{position:absolute;left:calc(50% + 26px);top:166px;transform:translateX(-50%);font-size:34px;opacity:0;z-index:3;transition:opacity .3s}
+.hookfish.on{opacity:1;animation:wiggle .7s ease-in-out infinite}
+@keyframes wiggle{0%,100%{transform:translateX(-50%) rotate(-12deg)}50%{transform:translateX(-50%) rotate(12deg)}}
+.hookfish.caught{animation:caughtUp .9s ease forwards}
+@keyframes caughtUp{0%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}60%{opacity:1;transform:translateX(-50%) translateY(-150px) scale(1.25) rotate(14deg)}100%{opacity:0;transform:translateX(-50%) translateY(-190px) scale(.6)}}
+.hookfish.escape{animation:escapeDive .8s ease forwards}
+@keyframes escapeDive{30%{opacity:1}100%{opacity:0;transform:translateX(-50%) translateY(120px) rotate(30deg)}}
+.splash{position:absolute;left:calc(50% + 26px);top:64px;transform:translateX(-50%);font-size:30px;opacity:0;z-index:4}
+.splash.on{animation:splashA .7s ease forwards}
+@keyframes splashA{0%{opacity:1;transform:translateX(-50%) scale(.4)}60%{opacity:1;transform:translateX(-50%) scale(1.4)}100%{opacity:0;transform:translateX(-50%) scale(1.7) translateY(-14px)}}
+.boat-wrap.shake{animation:shakeBoat .6s ease}
+@keyframes shakeBoat{0%,100%{transform:translateX(-50%) rotate(0)}20%{transform:translateX(calc(-50% - 12px)) rotate(-9deg)}40%{transform:translateX(calc(-50% + 12px)) rotate(9deg)}60%{transform:translateX(calc(-50% - 9px)) rotate(-7deg)}80%{transform:translateX(calc(-50% + 9px)) rotate(6deg)}}
+.boat-wrap.sink{animation:sinkBoat 2.6s ease-in forwards}
+@keyframes sinkBoat{0%{transform:translateX(-50%) rotate(0);opacity:1}40%{transform:translateX(-50%) translateY(10px) rotate(18deg)}100%{transform:translateX(-50%) translateY(330px) rotate(48deg);opacity:0}}
+.bubble{position:absolute;left:50%;bottom:20%;font-size:24px;pointer-events:none;animation:bubUp 1.6s ease-out forwards;z-index:11}
+@keyframes bubUp{to{transform:translate(var(--bx),-150px);opacity:0}}
+.pop{position:absolute;left:50%;transform:translateX(-50%);z-index:14;font-family:var(--fd);font-size:26px;letter-spacing:2px;color:var(--sun);text-shadow:0 0 16px rgba(255,217,61,.8),2px 2px 0 #a34500;pointer-events:none;animation:fl 1.5s ease-out forwards}
+@keyframes fl{to{transform:translate(-50%,-130px);opacity:0}}
+#banner{position:absolute;top:14px;left:50%;transform:translateX(-50%);z-index:15;font-family:var(--fd);font-size:clamp(15px,2.4vw,22px);letter-spacing:2px;padding:8px 20px;border-radius:12px;border:2px solid rgba(255,217,61,.7);background:rgba(6,30,44,.9);color:var(--sun);opacity:0;transition:opacity .4s;white-space:nowrap;max-width:92%;overflow:hidden;text-overflow:ellipsis}
+#banner.show{opacity:1}
+
+/* ---------- QUESTION ---------- */
+.qhead{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.qtag{font-family:var(--fm);font-size:11px;letter-spacing:1px;border:2px solid var(--line2);padding:4px 12px;border-radius:20px;color:var(--gr)}
+.qtag.am{color:var(--sun);border-color:rgba(255,217,61,.5)}
+.qfish{font-family:var(--fd);font-size:21px;letter-spacing:2px;color:var(--sun);margin-bottom:10px;text-shadow:2px 2px 0 rgba(0,0,0,.4)}
+.qtext{font-size:clamp(16px,2.4vw,20px);font-weight:700;line-height:1.5;margin-bottom:16px}
+.opts{display:grid;gap:9px}
+.opt{display:flex;gap:12px;align-items:center;text-align:left;border:2px solid var(--line);border-radius:12px;padding:12px 14px;background:#083348;font-size:15.5px;font-weight:600;transition:.15s;width:100%}
+.opt .key{font-family:var(--fd);font-size:16px;width:34px;height:34px;flex:none;display:grid;place-items:center;border:2px solid var(--line2);border-radius:9px;color:var(--sun);letter-spacing:0}
+.opt:hover{border-color:var(--sun);background:rgba(255,217,61,.08);transform:translateX(5px)}
+.opt.correct{border-color:var(--gr);background:rgba(62,240,143,.14);animation:okP .6s ease}
+.opt.correct .key{background:var(--gr);color:#03130a;border-color:var(--gr)}
+.opt.wrongpick{border-color:var(--rd);background:rgba(255,93,93,.13);animation:shakeX .45s}
+.opt.wrongpick .key{background:var(--rd);color:#1c0505;border-color:var(--rd)}
+@keyframes okP{0%{box-shadow:0 0 0 0 rgba(62,240,143,.6)}100%{box-shadow:0 0 0 16px rgba(62,240,143,0)}}
+@keyframes shakeX{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.fb{font-family:var(--fd);font-size:clamp(18px,3vw,24px);letter-spacing:2px;padding:13px 16px;border-radius:12px;margin-bottom:12px}
+.fb.ok{color:var(--gr);background:rgba(62,240,143,.1);border:2px solid rgba(62,240,143,.5);text-shadow:0 0 16px rgba(62,240,143,.5)}
+.fb.bad{color:var(--rd);background:rgba(255,93,93,.1);border:2px solid rgba(255,93,93,.5);text-shadow:0 0 16px rgba(255,93,93,.5);animation:shakeX .5s}
+.info{border:2px solid var(--line2);border-left:5px solid var(--sun);border-radius:12px;background:#083348;padding:13px 15px;margin:12px 0;font-size:15px;line-height:1.65;color:var(--dim)}
+.info b{color:var(--txt)}
+.info .ans-line{color:var(--gr);font-weight:700}
+.idle-big{text-align:center;padding:22px 10px}
+.idle-big .ib-face{font-size:56px;animation:bobber2 2.6s ease-in-out infinite}
+@keyframes bobber2{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.idle-big p{color:var(--dim);font-size:16px;margin:10px 0 18px;font-weight:600}
+
+/* ---------- END ---------- */
+.end-wrap{max-width:660px;margin:4vh auto;text-align:center}
+.end-face{font-size:92px;animation:bobber2 2s ease-in-out infinite}
+.end-title{font-family:var(--fd);font-size:clamp(30px,6.5vw,56px);letter-spacing:3px;margin:12px 0 8px}
+.end-sub{color:var(--dim);font-size:17px;margin-bottom:8px;font-weight:600}
+.rank-tag{display:inline-block;font-family:var(--fd);letter-spacing:2px;font-size:20px;color:#3d1400;background:linear-gradient(180deg,#ffe98a,var(--sun));padding:10px 26px;border-radius:12px;margin:12px 0 22px;box-shadow:0 0 26px rgba(255,217,61,.5)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(115px,1fr));gap:10px;margin-bottom:24px;text-align:center}
+.stats .panel{padding:13px 8px}
+.stats .lab{font-family:var(--fm);font-size:10px;letter-spacing:2px;color:var(--dim);display:block;margin-bottom:4px}
+.stats b{font-family:var(--fd);font-size:21px;letter-spacing:1px}
+.basket{font-size:24px;letter-spacing:3px;line-height:1.7;word-break:break-all}
+#fx{position:fixed;inset:0;z-index:80;pointer-events:none}
+@media(max-width:860px){.start-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<canvas id="fx"></canvas>
+
+<!-- ================= START ================= -->
+<section id="scr-start" class="screen active">
+  <div class="start-grid">
+    <div>
+      <div class="badge">🌊 MATERI SMK KELAS 10 TKJ • BISNIS TKJ & TEKNOLOGI NIRKABEL • 25 SOAL • 15 MENIT</div>
+      <h1 class="gt">🎣 MANCING<br><span>JARINGAN</span></h1>
+      <p class="tag">// KAIL SOALNYA — TARIK IKANNYA — JANGAN SAMPAI TENGGELAM! //</p>
+      <div class="rules">
+        <span class="r">🐟 <b>Jawaban BENAR</b> → ikan berhasil ditangkap & mendapat poin!</span>
+        <span class="r">🌊 <b>Jawaban SALAH</b> → kapal terguncang, ikan lepas!</span>
+        <span class="r">🚢 <b>25 soal benar semua</b> → hadiah <b>KAPAL BESAR</b>!</span>
+        <span class="r">🫧 <b>19 soal salah (¾ dari total)</b> → kapal <b>TENGGELAM</b>!</span>
+        <span class="r">⏱️ Waktu memancing: <b>15 MENIT</b>.</span>
+      </div>
+      <div class="panel">
+        <label>Nama Nelayan</label>
+        <input id="inName" placeholder="Masukkan namamu..." maxlength="20">
+        <div style="margin-top:16px"><button class="btn big sun" id="btnStart">🌄 BERANGKAT MELAUT</button></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-h">🪣 TANGKAPAN DI LAUT INI</div>
+      <div id="fishList"></div>
+      <div style="margin-top:14px;font-size:13.5px;color:var(--dim)">📝 Total <b style="color:#fff">25 soal</b> seputar <b style="color:#fff">komponen jaringan, alat jaringan, teknologi nirkabel & bisnis TKJ</b>. Setiap soal disertai pembahasan!</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GAME ================= -->
+<section id="scr-game" class="screen">
+  <div class="hud">
+    <span class="hcell" id="hudTime">⏱️ 15:00</span>
+    <span class="hcell">🎯 SOAL <b id="hudQ">1/25</b></span>
+    <span class="hcell">🐟 <b id="hudFish">0</b></span>
+    <span class="hcell">✅ <b id="hudOk">0</b></span>
+    <span class="hcell" id="hudBad">❌ <b>0</b>/19</span>
+    <span class="hcell">🏆 <b id="hudScore">0</b></span>
+    <span class="sp"></span>
+    <button class="icobtn" id="btnSnd" title="Suara">🔊</button>
+    <button class="icobtn" id="btnQuit" title="Keluar">🏠</button>
+  </div>
+  <div class="wrap">
+    <div class="scene" id="scene">
+      <div class="sun">☀️</div>
+      <div class="cloud" style="top:8%;font-size:42px;animation-duration:38s">☁️</div>
+      <div class="cloud" style="top:16%;animation-duration:55s;animation-delay:-20s">⛅</div>
+      <div class="cloud" style="top:4%;animation-duration:46s;animation-delay:-35s;font-size:30px">☁️</div>
+      <div class="swim" style="top:62%;animation-duration:17s">🐟</div>
+      <div class="swim flip" style="top:74%;animation-duration:23s;animation-delay:-8s">🐠</div>
+      <div class="swim" style="top:85%;animation-duration:29s;animation-delay:-14s;font-size:20px">🐡</div>
+      <div class="swim flip" style="top:68%;animation-duration:34s;animation-delay:-25s;font-size:30px">🦑</div>
+      <div class="wavestrip" id="wave1" style="top:calc(44% - 16px);animation-duration:9s;opacity:.95"></div>
+      <div class="wavestrip" id="wave2" style="top:calc(44% - 6px);animation-duration:14s;opacity:.55;font-size:24px"></div>
+      <div class="boat-wrap" id="boatWrap">
+        <div class="fisher">🧑‍🎣</div>
+        <div class="hull" id="hull">🚤</div>
+        <div class="line" id="line"></div>
+        <div class="hookfish" id="hookFish">🐠</div>
+        <div class="splash" id="splash">💦</div>
+      </div>
+      <div id="banner"></div>
+    </div>
+    <div class="panel" id="actionPanel"></div>
+  </div>
+</section>
+
+<!-- ================= END ================= -->
+<section id="scr-end" class="screen">
+  <div class="end-wrap">
+    <div class="end-face" id="endFace">🏆</div>
+    <div class="end-title" id="endTitle">MEMANCING SELESAI!</div>
+    <div class="end-sub" id="endSub"></div>
+    <div class="rank-tag" id="endRank">GELAR</div>
+    <div class="panel" style="margin-bottom:16px"><div class="lab" style="font-family:var(--fm);font-size:11px;letter-spacing:2px;color:var(--dim);margin-bottom:8px">🪣 HASIL TANGKAPAN</div><div class="basket" id="endBasket">—</div></div>
+    <div class="stats" id="endStats"></div>
+    <button class="btn big sun" id="btnRetry">🔁 MELAUT LAGI</button>
+    <button class="btn ghost" id="btnHome">🏠 BERANDA</button>
+  </div>
+</section>
+
+<script>
+/* ============================================================
+   MANCING JARINGAN — game memancing soal DDTKJ/TKJ
+   ============================================================ */
+const $=id=>document.getElementById(id);
+const R=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const pick=a=>a[R(0,a.length-1)];
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=R(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* ---------- BANK SOAL: 25 (komponen & alat jaringan, nirkabel, bisnis TKJ) ---------- */
+const Q=(q,o,a,i)=>({q,o,a,i});
+const BANK=[
+Q('Komponen jaringan yang bertugas menyediakan layanan dan sumber daya untuk komputer lain disebut…',['Client','Server','Hub','Modem'],1,'Server menyediakan layanan (file, web, printer) untuk komputer client.'),
+Q('Komputer yang meminta dan menggunakan layanan dari server disebut…',['Hub','Client','Server','Repeater'],1,'Client adalah perangkat yang memakai layanan milik server.'),
+Q('Komponen yang terpasang pada PC/laptop agar dapat terhubung ke jaringan adalah…',['VGA Card','Sound Card','NIC (LAN Card)','Power Supply'],2,'NIC / LAN Card adalah kartu jaringan yang memiliki MAC Address.'),
+Q('Alat yang menghubungkan sesama perangkat dalam jaringan LAN dan meneruskan data berdasarkan MAC Address adalah…',['Hub','Switch','Modem','Access Point'],1,'Switch bekerja di Layer 2 meneruskan frame berdasarkan MAC Address.'),
+Q('Alat jaringan yang berfungsi menghubungkan jaringan berbeda dan memilih jalur terbaik paket data adalah…',['Router','Hub','Repeater','Switch'],0,'Router merutekan paket antarjaringan berbeda (Layer 3).'),
+Q('Alat yang mengirim data ke SEMUA port tanpa mengenal alamat tujuan adalah…',['Switch','Router','Hub','Bridge'],2,'Hub melakukan broadcast ke semua port sehingga rawan tabrakan data.'),
+Q('Alat yang memancarkan sinyal WiFi agar perangkat terhubung tanpa kabel adalah…',['Modem','Repeater','Switch','Access Point'],3,'Access Point memancarkan WiFi dan menjembatani perangkat nirkabel ke LAN.'),
+Q('Alat yang mengubah sinyal digital menjadi analog dan sebaliknya adalah…',['Modem','Switch','Hub','NIC'],0,'Modem (modulator-demodulator) mengubah sinyal digital ⇄ analog.'),
+Q('Alat yang berfungsi memperkuat sinyal jaringan yang sudah melemah adalah…',['Router','Repeater','Server','Switch'],1,'Repeater memperkuat sinyal agar jangkauan jaringan lebih jauh.'),
+Q('Kabel jaringan yang menggunakan konektor RJ45 adalah…',['Fiber Optic','Coaxial','UTP','HDMI'],2,'UTP (Unshielded Twisted Pair) memakai konektor RJ45.'),
+Q('Media transmisi yang menghantarkan data menggunakan cahaya adalah…',['UTP','Fiber Optic','Coaxial','Kabel listrik'],1,'Fiber optic mengirim data sebagai pulsa cahaya dalam serat kaca.'),
+Q('Konektor RJ45 berfungsi untuk…',['Menghubungkan kabel UTP ke perangkat','Mengubah sinyal digital','Memancarkan WiFi','Menyimpan data'],0,'RJ45 dipasang di ujung kabel UTP dengan alat crimping.'),
+Q('Teknologi jaringan TANPA kabel yang paling umum digunakan saat ini adalah…',['UTP','Coaxial','WiFi','Fiber Optic'],2,'WiFi adalah teknologi nirkabel berbasis gelombang radio (IEEE 802.11).'),
+Q('Frekuensi yang umum digunakan jaringan WiFi adalah…',['2,4 GHz dan 5 GHz','100 Hz dan 200 Hz','900 kHz','50 Hz'],0,'WiFi bekerja pada band 2,4 GHz dan 5 GHz.'),
+Q('Standar keamanan untuk jaringan nirkabel (WiFi) adalah…',['RJ45','WPA2 / WPA3','TCP','FTP'],1,'WPA2/WPA3 mengenkripsi jaringan WiFi; WEP sudah tidak aman.'),
+Q('Data pada jaringan nirkabel dikirim melalui…',['Gelombang radio','Kabel tembaga','Serat kaca','Kabel listrik'],0,'Jaringan tanpa kabel memanfaatkan gelombang radio/elektromagnetik.'),
+Q('Komponen perangkat nirkabel yang memancarkan dan menerima sinyal radio adalah…',['Baterai','Layar','Antena','Speaker'],2,'Antena bertugas memancarkan dan menangkap sinyal radio.'),
+Q('Fitur smartphone untuk berbagi koneksi internet ke perangkat lain secara nirkabel disebut…',['Airplane mode','Screenshot','Tethering / Hotspot','Sleep mode'],2,'Tethering/hotspot mengubah HP menjadi sumber WiFi bagi perangkat lain.'),
+Q('Contoh peluang bisnis di bidang TKJ adalah…',['Jasa menjahit pakaian','Usaha laundry','Bengkel motor','Jasa instalasi & perawatan jaringan'],3,'Lulusan TKJ dapat membuka jasa pasang jaringan, servis, dan maintenance.'),
+Q('Perusahaan yang menjual jasa koneksi internet kepada pelanggan disebut…',['ISP','SMK','BUMN','ATM'],0,'ISP = Internet Service Provider, contoh: Indihome, Biznet, First Media.'),
+Q('Usaha memasang hotspot WiFi untuk warung dan kafe termasuk bisnis bidang…',['Tata boga','Jaringan komputer','Otomotif','Pertanian'],1,'Jasa instalasi hotspot adalah peluang usaha nyata bidang TKJ.'),
+Q('Alat utama yang dibutuhkan untuk membangun jaringan LAN di lab sekolah adalah…',['Kompor','Switch','Printer','Stabilizer'],1,'Switch menghubungkan banyak komputer dalam satu LAN.'),
+Q('Generasi teknologi seluler nirkabel terbaru saat ini adalah…',['1G','2G','4G','5G'],3,'Perkembangan nirkabel: 1G → 2G → 3G → 4G → 5G.'),
+Q('Teknologi nirkabel jarak dekat untuk menghubungkan HP dengan headset adalah…',['Fiber Optic','UTP','Bluetooth','Coaxial'],2,'Bluetooth adalah teknologi nirkabel jarak pendek (±10 meter).'),
+Q('Tokoh yang dikenal sebagai penemu radio, pelopor teknologi nirkabel, adalah…',['Thomas Alva Edison','Alexander Graham Bell','Guglielmo Marconi','Nikola Tesla'],2,'Guglielmo Marconi mengirim sinyal radio nirkabel pertama (1895).')
+];
+
+/* ---------- JENIS IKAN ---------- */
+const FISH=[
+ {e:'🐟',n:'IKAN KECIL',pts:10,w:'40%'},
+ {e:'🐠',n:'IKAN KARANG',pts:20,w:'30%'},
+ {e:'🐡',n:'IKAN BUNTAL',pts:30,w:'20%'},
+ {e:'🦑',n:'GURITA LANGKA',pts:40,w:'10%'}
+];
+function pickFish(){const r=Math.random();if(r<.4)return FISH[0];if(r<.7)return FISH[1];if(r<.9)return FISH[2];return FISH[3]}
+const TOTAL=25, SINK_AT=Math.ceil(TOTAL*3/4), TOTAL_TIME=15*60; // 19 salah = tenggelam
+
+/* ---------- AUDIO ---------- */
+let AC=null,SND=true;
+const ac=()=>{if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}return AC};
+function tone(f,d,type='square',g=.12,delay=0,slide=0){
+  if(!SND)return;const c=ac();if(!c)return;
+  try{const o=c.createOscillator(),gn=c.createGain(),t0=c.currentTime+delay;
+  o.type=type;o.frequency.setValueAtTime(f,t0);
+  if(slide)o.frequency.exponentialRampToValueAtTime(Math.max(30,f+slide),t0+d);
+  gn.gain.setValueAtTime(g,t0);gn.gain.exponentialRampToValueAtTime(.001,t0+d);
+  o.connect(gn);gn.connect(c.destination);o.start(t0);o.stop(t0+d+.05);}catch(e){}
+}
+function noiseHit(d=.3,g=.25){
+  if(!SND)return;const c=ac();if(!c)return;
+  try{const b=c.createBuffer(1,c.sampleRate*d,c.sampleRate),ch=b.getChannelData(0);
+  for(let i=0;i<ch.length;i++)ch[i]=(Math.random()*2-1)*Math.pow(1-i/ch.length,2);
+  const s=c.createBufferSource();s.buffer=b;const gn=c.createGain();gn.gain.value=g;
+  s.connect(gn);gn.connect(c.destination);s.start();}catch(e){}
+}
+const sfx={
+ cast:()=>tone(300,.4,'triangle',.1,0,500),
+ splash:()=>{noiseHit(.3,.3);tone(500,.2,'sine',.08,0,-300)},
+ ok:()=>{tone(523,.1,'square',.12);tone(659,.1,'square',.12,.1);tone(784,.16,'square',.13,.2)},
+ bad:()=>{tone(220,.25,'sawtooth',.14);tone(150,.35,'sawtooth',.14,.18)},
+ shake:()=>{noiseHit(.2,.2);tone(90,.3,'sine',.2)},
+ sink:()=>{tone(300,1.4,'sawtooth',.14,0,-250);noiseHit(.9,.15)},
+ win:()=>{[523,659,784,1046,1318,1568].forEach((f,i)=>tone(f,.18,'square',.12,i*.12))},
+ tick:()=>tone(950,.04,'square',.05),
+ strike:()=>{tone(400,.12,'square',.13);tone(600,.12,'square',.13,.12)}
+};
+
+/* ---------- STATE ---------- */
+let S=null,CUR=null,TMR=null;
+const show=id=>{document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active');window.scrollTo(0,0)};
+
+function initStart(){
+  $('fishList').innerHTML=FISH.map(f=>
+    `<div class="catch-row"><span class="cf">${f.e}</span>
+     <span><b>${f.n}</b><small>Peluang muncul: ${f.w}</small></span>
+     <span class="cp">+${f.pts}</span></div>`).join('');
+  $('wave1').textContent='🌊'.repeat(50);
+  $('wave2').textContent='🌊'.repeat(60);
+}
+
+/* ---------- MULAI ---------- */
+function startGame(){
+  const name=$('inName').value.trim()||'Nelayan';
+  S={name,idx:0,correct:0,wrong:0,score:0,timeLeft:TOTAL_TIME,over:false,caught:[],deck:shuffle(BANK)};
+  $('scene').classList.remove('storm');
+  const bw=$('boatWrap');bw.classList.remove('sink','shake');bw.style.opacity=1;
+  $('hull').textContent='🚤';$('hull').classList.remove('bigship');
+  $('line').classList.remove('cast');
+  $('hookFish').className='hookfish';$('hookFish').style.opacity=0;
+  show('scr-game');
+  updateHUD();idlePanel();startClock();
+  banner(`🌊 SELAMAT MELAUT, ${S.name.toUpperCase()}!`);
+}
+function startClock(){
+  clearInterval(TMR);
+  TMR=setInterval(()=>{
+    if(S.over)return;
+    S.timeLeft--;
+    const m=Math.floor(S.timeLeft/60),s=S.timeLeft%60;
+    $('hudTime').textContent=`⏱️ ${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    $('hudTime').classList.toggle('low',S.timeLeft<=60);
+    if(S.timeLeft<=60&&S.timeLeft>0)sfx.tick();
+    if(S.timeLeft<=0){clearInterval(TMR);endGame('time')}
+  },1000);
+}
+function updateHUD(){
+  $('hudQ').textContent=Math.min(S.idx+1,TOTAL)+'/'+TOTAL;
+  $('hudFish').textContent=S.correct;
+  $('hudOk').textContent=S.correct;
+  $('hudBad').innerHTML=`❌ <b>${S.wrong}</b>/${SINK_AT}`;
+  $('hudBad').classList.toggle('hot',S.wrong>=SINK_AT-3);
+  $('hudScore').textContent=S.score;
+}
+function banner(txt){
+  const bn=$('banner');bn.textContent=txt;bn.classList.add('show');
+  clearTimeout(bn._t);bn._t=setTimeout(()=>bn.classList.remove('show'),2400);
+}
+function popUp(txt,top){
+  const p=document.createElement('div');p.className='pop';p.textContent=txt;
+  p.style.top=(top||34)+'%';$('scene').appendChild(p);setTimeout(()=>p.remove(),1600);
+}
+
+/* ---------- ALUR MANCING ---------- */
+function idlePanel(){
+  $('actionPanel').innerHTML=`
+    <div class="idle-big">
+      <div class="ib-face">🎣🌊</div>
+      <p>Laut tenang… ikan-ikan soal berenang di bawah sana.<br>Soal berikutnya: <b style="color:var(--sun)">${Math.min(S.idx+1,TOTAL)} dari ${TOTAL}</b></p>
+      <button class="btn big" id="btnCast">🎣 LEMPAR KAIL</button>
+    </div>`;
+  $('btnCast').onclick=cast;
+}
+function cast(){
+  if(S.over)return;
+  sfx.cast();
+  $('line').classList.add('cast');
+  CUR={locked:false};
+  setTimeout(()=>{sfx.splash();splash()},750);
+  setTimeout(strike,1500);
+}
+function splash(){const sp=$('splash');sp.classList.remove('on');void sp.offsetWidth;sp.classList.add('on')}
+function strike(){
+  if(S.over)return;
+  CUR.fish=pickFish();CUR.q=S.deck[S.idx];
+  const hf=$('hookFish');hf.textContent=CUR.fish.e;
+  hf.className='hookfish on';hf.style.opacity=1;
+  sfx.strike();
+  banner(`‼️ STRIKE! ${CUR.fish.e} ${CUR.fish.n} MENYANGKUT DI KAIL!`);
+  setTimeout(showQuestion,650);
+}
+function showQuestion(){
+  const q=CUR.q,f=CUR.fish;
+  $('actionPanel').innerHTML=`
+    <div class="qhead">
+      <span class="qtag am">🎯 SOAL ${S.idx+1}/${TOTAL}</span>
+      <span class="qtag">✅ BENAR = DAPAT IKAN • ❌ SALAH = KAPAL BERGUNCANG</span>
+    </div>
+    <div class="qfish">${f.e} ${f.n} — BERHASIL DITANGKAP JIKA JAWAB BENAR (+${f.pts} POIN)</div>
+    <div class="qtext">${esc(q.q)}</div>
+    <div class="opts">${q.o.map((o,i)=>
+      `<button class="opt" data-i="${i}"><span class="key">${'ABCD'[i]}</span><span>${esc(o)}</span></button>`).join('')}</div>`;
+  $('actionPanel').querySelectorAll('.opt').forEach(b=>b.onclick=()=>answer(+b.dataset.i));
+}
+function answer(i){
+  if(!CUR||CUR.locked)return;CUR.locked=true;
+  const q=CUR.q,opts=$('actionPanel').querySelectorAll('.opt');
+  opts.forEach(b=>b.style.pointerEvents='none');
+  opts[q.a].classList.add('correct');
+  if(i>=0&&i!==q.a)opts[i].classList.add('wrongpick');
+  const ok=i===q.a;
+  setTimeout(()=>ok?catchFish(q):fishEscape(q,i===-1),750);
+}
+function catchFish(q){
+  const f=CUR.fish;
+  const hf=$('hookFish');hf.className='hookfish caught';
+  splash();sfx.splash();setTimeout(()=>sfx.ok(),250);
+  S.correct++;S.score+=f.pts;S.caught.push(f.e);
+  popUp(`${f.e} TANGKAPAN! +${f.pts} POIN`,30);
+  updateHUD();
+  setTimeout(()=>{
+    $('hookFish').className='hookfish';$('hookFish').style.opacity=0;
+    $('line').classList.remove('cast');
+    resultPanel(true,q,f);
+  },950);
+}
+function fishEscape(q,timeout){
+  const f=CUR.fish;
+  const bw=$('boatWrap');bw.classList.remove('shake');void bw.offsetWidth;bw.classList.add('shake');
+  const hf=$('hookFish');hf.className='hookfish escape';
+  splash();sfx.splash();sfx.shake();
+  S.wrong++;updateHUD();
+  banner(timeout?'⏱️ WAKTU UNTUK SOAL INI HABIS… IKAN LEPAS!':'🌊 BYUURR! KAPAL BERGUNCANG — IKAN LEPAS!');
+  if(S.wrong>=SINK_AT){
+    setTimeout(()=>sinkShip(),900);return;
+  }
+  setTimeout(()=>{
+    $('hookFish').className='hookfish';$('hookFish').style.opacity=0;
+    $('line').classList.remove('cast');
+    resultPanel(false,q,f,timeout);
+  },900);
+}
+function resultPanel(ok,q,f,timeout){
+  $('actionPanel').innerHTML=`
+    <div class="fb ${ok?'ok':'bad'}">${ok
+      ?`🐟 TANGKAPAN BERHASIL! ${f.e} ${f.n} +${f.pts} POIN`
+      :(timeout?`⏱️ TERLALU LAMA! ${f.e} KABUR…`:`🌊 GUNCANGAN! ${f.e} KABUR…`)}</div>
+    <div class="info"><b>📚 PEMBAHASAN:</b><br><span class="ans-line">✅ ${'ABCD'[q.a]}. ${esc(q.o[q.a])}</span><br>${esc(q.i)}</div>
+    <button class="btn sun big" id="btnNext">${S.idx>=TOTAL-1?'🏁 LIHAT HASIL':'🎣 MANCING LAGI'}</button>`;
+  $('btnNext').onclick=()=>{
+    S.idx++;
+    if(S.idx>=TOTAL){
+      if(S.correct===TOTAL)bigShip();else endGame('finish');
+      return;
+    }
+    updateHUD();idlePanel();
+  };
+}
+
+/* ---------- KAPAL BESAR & TENGGELAM ---------- */
+function bigShip(){
+  S.over=true;clearInterval(TMR);
+  $('line').classList.remove('cast');
+  $('hull').textContent='🚢';$('hull').classList.add('bigship');
+  sfx.win();confetti(240);
+  banner('🚢 LUAR BIASA! SEMUA BENAR — HADIAH KAPAL BESAR!');
+  popUp('🚢 HADIAH KAPAL BESAR!',24);
+  setTimeout(()=>endGame('perfect'),2600);
+}
+function sinkShip(){
+  S.over=true;clearInterval(TMR);
+  $('actionPanel').innerHTML=`<div class="idle-big"><div class="ib-face">🫧</div><p>Kebocoran terlalu banyak… kapal mulai karam!</p></div>`;
+  $('scene').classList.add('storm');
+  sfx.sink();
+  $('boatWrap').classList.add('sink');
+  for(let i=0;i<10;i++)setTimeout(()=>{
+    const b=document.createElement('div');b.className='bubble';b.textContent='🫧';
+    b.style.setProperty('--bx',(R(-60,60))+'px');
+    $('scene').appendChild(b);setTimeout(()=>b.remove(),1700);
+  },i*220);
+  banner('🫧 KAPAL TENGGELAM!');
+  setTimeout(()=>endGame('sink'),2800);
+}
+
+/* ---------- AKHIR ---------- */
+function rankOf(c){
+  if(c>=23)return'🥇 NELAYAN LEGENDARIS';
+  if(c>=18)return'🥈 NELAYAN ELIT';
+  if(c>=12)return'🥉 NELAYAN ANDAL';
+  if(c>=6)return'🎣 NELAYAN MUDA';
+  return'🪣 PEMANCING PEMULA';
+}
+function endGame(type){
+  S.over=true;clearInterval(TMR);
+  const used=TOTAL_TIME-Math.max(0,S.timeLeft);
+  const mm=String(Math.floor(used/60)).padStart(2,'0'),ss=String(used%60).padStart(2,'0');
+  const cfg={
+    perfect:{face:'🚢🏆',title:'SEMPURNA!',color:'var(--sun)',sub:`${S.name} menjawab SEMUA soal dengan benar dan membawa pulang HADIAH KAPAL BESAR!`},
+    finish:{face:'🎣',title:'MEMANCING SELESAI!',color:'var(--txt)',sub:`${S.name} berhasil membawa pulang ${S.correct} ekor ikan!`},
+    sink:{face:'🫧',title:'KAPAL TENGGELAM!',color:'var(--rd)',sub:`${S.wrong} jawaban salah (¾ dari total soal) membuat kapal karam di dasar laut…`},
+    time:{face:'⏱️',title:'WAKTU HABIS!',color:'var(--am)',sub:'15 menit telah berakhir. Perahu kembali ke dermaga…'}
+  }[type];
+  $('endFace').textContent=cfg.face;
+  const t=$('endTitle');t.textContent=cfg.title;t.style.color=cfg.color;
+  $('endSub').textContent=cfg.sub;
+  $('endRank').textContent=type==='perfect'?'🚢 HADIAH: KAPAL BESAR + GELAR NELAYAN SEMPURNA':('GELAR: '+rankOf(S.correct));
+  const acc=S.idx?Math.round(S.correct/Math.min(S.idx+ (type==='time'?0:1),TOTAL)*100):0;
+  $('endBasket').innerHTML=S.caught.length?S.caught.join(' '):'— belum ada tangkapan —';
+  $('endStats').innerHTML=`
+    <div class="panel"><span class="lab">IKAN / BENAR</span><b style="color:var(--gr)">${S.correct} 🐟</b></div>
+    <div class="panel"><span class="lab">SALAH</span><b style="color:var(--rd)">${S.wrong} 🌊</b></div>
+    <div class="panel"><span class="lab">SKOR TOTAL</span><b style="color:var(--sun)">${S.score}</b></div>
+    <div class="panel"><span class="lab">AKURASI</span><b style="color:var(--txt)">${acc}%</b></div>
+    <div class="panel"><span class="lab">WAKTU TERPAKAI</span><b style="color:var(--txt)">${mm}:${ss}</b></div>`;
+  show('scr-end');
+  if(type==='perfect'){sfx.win();confetti(220)}
+  else if(type==='sink')sfx.sink();
+  else if(S.correct>=12)sfx.win();
+}
+function confetti(n){
+  const cv=$('fx'),ctx=cv.getContext('2d');cv.width=innerWidth;cv.height=innerHeight;
+  const cols=['#ffd93d','#ff7a46','#3ef08f','#38e1ff','#ff5d8f','#fff'];
+  const P=Array.from({length:n},()=>({x:Math.random()*cv.width,y:-20-Math.random()*cv.height*.5,
+    vx:(Math.random()-.5)*3,vy:2+Math.random()*3.5,s:5+Math.random()*7,c:pick(cols),r:Math.random()*6.3,vr:(Math.random()-.5)*.3}));
+  let f=0;(function loop(){ctx.clearRect(0,0,cv.width,cv.height);
+    P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;
+      ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.fillStyle=p.c;ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);ctx.restore()});
+    if(++f<260)requestAnimationFrame(loop);else ctx.clearRect(0,0,cv.width,cv.height)})();
+}
+
+/* ---------- EVENT ---------- */
+document.addEventListener('DOMContentLoaded',()=>{
+  initStart();
+  $('btnStart').onclick=()=>{ac();sfx.ok();startGame()};
+  $('btnRetry').onclick=()=>{sfx.ok();startGame()};
+  $('btnHome').onclick=()=>{sfx.cast();show('scr-start')};
+  $('btnSnd').onclick=()=>{SND=!SND;$('btnSnd').textContent=SND?'🔊':'🔇';if(SND)sfx.tick()};
+  $('btnQuit').onclick=()=>{if(confirm('Kembali ke dermaga? Hasil memancing hilang.')){clearInterval(TMR);S&&(S.over=true);show('scr-start')}};
+  document.addEventListener('keydown',e=>{
+    if(!CUR||CUR.locked)return;
+    const map={'1':0,'2':1,'3':2,'4':3,a:0,b:1,c:2,d:3}[e.key.toLowerCase()];
+    if(map!==undefined&&$('actionPanel').querySelector('.opt'))answer(map);
+  });
+  document.body.addEventListener('click',()=>ac(),{once:true});
+  addEventListener('resize',()=>{const cv=$('fx');cv.width=innerWidth;cv.height=innerHeight});
+});
+</script>
+</body>
+</html>
